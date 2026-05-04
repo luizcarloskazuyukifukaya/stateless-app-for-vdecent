@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timezone Web App</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        h1 {
+            font-size: 3.5rem;
+            margin: 0.5rem 0;
+            color: #1a73e8;
+            font-weight: 700;
+        }
+        select {
+            padding: 0.75rem;
+            font-size: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #dadce0;
+            background-color: #fff;
+            width: 100%;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        select:focus {
+            border-color: #1a73e8;
+        }
+        .date {
+            font-size: 1.2rem;
+            color: #5f6368;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="date" id="date"></div>
+        <h1 id="time">00:00:00</h1>
+        <select id="timezone">
+            <option value="UTC">UTC</option>
+            <option value="Asia/Tokyo">Asia/Tokyo</option>
+            <option value="America/New_York">America/New_York</option>
+            <option value="Europe/London">Europe/London</option>
+            <option value="Australia/Sydney">Australia/Sydney</option>
+            <option value="Europe/Paris">Europe/Paris</option>
+            <option value="America/Los_Angeles">America/Los_Angeles</option>
+        </select>
+    </div>
+    <script>
+        const timeDisplay = document.getElementById('time');
+        const dateDisplay = document.getElementById('date');
+        const timezoneSelect = document.getElementById('timezone');
+
+        // Set default timezone to local if possible, or Tokyo
+        const defaultTz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Tokyo';
+        
+        // Check if defaultTz is already in options
+        let exists = false;
+        for (let i = 0; i < timezoneSelect.options.length; i++) {
+            if (timezoneSelect.options[i].value === defaultTz) {
+                timezoneSelect.selectedIndex = i;
+                exists = true;
+                break;
+            }
+        }
+
+        if (!exists) {
+            const opt = document.createElement('option');
+            opt.value = defaultTz;
+            opt.textContent = defaultTz;
+            timezoneSelect.appendChild(opt);
+            timezoneSelect.value = defaultTz;
+        }
+
+        function updateTime() {
+            const now = new Date();
+            const tz = timezoneSelect.value;
+            
+            try {
+                const timeStr = now.toLocaleTimeString('en-US', { 
+                    timeZone: tz, 
+                    hour12: false,
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                const dateStr = now.toLocaleDateString('en-US', { 
+                    timeZone: tz, 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+
+                timeDisplay.textContent = timeStr;
+                dateDisplay.textContent = dateStr;
+            } catch (e) {
+                console.error("Invalid timezone:", tz);
+            }
+        }
+
+        timezoneSelect.addEventListener('change', updateTime);
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>
