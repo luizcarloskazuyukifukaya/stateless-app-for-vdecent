@@ -18,6 +18,15 @@ source venv/bin/activate
 echo "Installing dependencies..."
 pip install -r requirements.txt
 
+# Get local IP address
+LOCAL_IP=$(hostname -I | awk '{print $1}')
+
 # Launch the app
-echo "Launching app on http://localhost:8081"
+echo "App is starting..."
+echo "Access the web page for test at:"
+echo "1) http://localhost:8081"
+if [ ! -z "$LOCAL_IP" ]; then
+    echo "2) http://$LOCAL_IP:8081"
+fi
+
 python main.py
