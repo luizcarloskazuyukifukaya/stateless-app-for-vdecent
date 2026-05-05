@@ -14,7 +14,7 @@ A simple, lightweight stateless web application built with FastAPI. This project
 ```text
 .
 ├── Dockerfile              # Docker image configuration
-├── docker-compose.yaml      # Docker Compose for local orchestration
+├── docker-compose.yaml     # Docker Compose for local orchestration
 ├── main.py                 # FastAPI application entry point
 ├── requirements.txt        # Python dependencies
 ├── run_local.sh            # Helper script to run the app locally
@@ -56,11 +56,12 @@ A simple, lightweight stateless web application built with FastAPI. This project
 
 This application is fully compatible with **Coolify**. To deploy:
 
-1. Connect your GitHub repository to Coolify.
-2. Select **Docker Compose** as the **Build Pack**.
-3. Set the **Docker Compose Location** to `/docker-compose.yaml`.
-4. Set the **Destination Port** for the `web` service to `8081`.
-5. Deploy!
+1. With Coolify for the New Resource, select **Applications**, 
+2. Select the **Git Based** type based on your repository (Public or Private).
+3. Select **Docker Compose** as the **Build Pack**.
+4. Set the **Docker Compose Location** to `/docker-compose.yaml`.
+5. Set the **Destination Port** for the `web` service to `8081`.
+6. Deploy!
 
 ## License
 
