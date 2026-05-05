@@ -57,9 +57,10 @@ A simple, lightweight stateless web application built with FastAPI. This project
 This application is fully compatible with **Coolify**. To deploy:
 
 1. Connect your GitHub repository to Coolify.
-2. Select **Nixpacks** or **Docker** as the build pack.
-3. Set the destination port to `8081`.
-4. Deploy!
+2. Select **Docker Compose** as the **Build Pack**.
+3. Set the **Docker Compose Location** to `/docker-compose.yaml`.
+4. Set the **Destination Port** for the `web` service to `8081`.
+5. Deploy!
 
 ## License
 
