@@ -7,14 +7,14 @@ A simple, lightweight stateless web application built with FastAPI. This project
 - **FastAPI Backend:** High-performance Python framework for building APIs.
 - **Static Content Hosting:** Serves static files from the `static/` directory.
 - **Stateless Design:** No persistent state within the application, making it ideal for scalable cloud deployments.
-- **Dockerized:** Includes a `Dockerfile` and `docker-compose.yml` for easy environment setup and deployment.
+- **Dockerized:** Includes a `Dockerfile` and `docker-compose.yaml` for easy environment setup and deployment.
 
 ## Project Structure
 
 ```text
 .
 ├── Dockerfile              # Docker image configuration
-├── docker-compose.yml      # Docker Compose for local orchestration
+├── docker-compose.yaml      # Docker Compose for local orchestration
 ├── main.py                 # FastAPI application entry point
 ├── requirements.txt        # Python dependencies
 ├── run_local.sh            # Helper script to run the app locally
