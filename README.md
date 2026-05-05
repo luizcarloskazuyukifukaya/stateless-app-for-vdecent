@@ -1,4 +1,4 @@
-# Stateless App for VDecent
+# Stateless App for V-Decent
 
 A simple, lightweight stateless web application built with FastAPI. This project serves a static `index.html` page and is designed to be easily containerized and deployed.
 
@@ -56,7 +56,7 @@ A simple, lightweight stateless web application built with FastAPI. This project
 
 This application is fully compatible with **Coolify**. To deploy:
 
-1. With Coolify for the New Resource, select **Applications**, 
+1. With Coolify for the New Resource, select **Applications**.
 2. Select the **Git Based** type based on your repository (Public or Private).
 3. Select **Docker Compose** as the **Build Pack**.
 4. Set the **Docker Compose Location** to `/docker-compose.yaml`.
