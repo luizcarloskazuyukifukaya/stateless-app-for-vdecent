@@ -40,7 +40,7 @@ A simple, lightweight stateless web application built with FastAPI. This project
    ```bash
    python main.py
    ```
-   The app will be available at `http://localhost:8081`.
+   The app will be available at `http://localhost:80` (requires root) or you can specify a port: `PORT=8081 python main.py`.
 
 ### Running with Docker
 
@@ -48,20 +48,32 @@ A simple, lightweight stateless web application built with FastAPI. This project
    ```bash
    docker-compose up --build
    ```
-   The app will be available at `http://localhost:8081`.
+   *Note: The container now defaults to port 80 for seamless Coolify integration.*
 
 ## Deployment
 
 ### Coolify
 
-This application is fully compatible with **Coolify**. To deploy:
+This application is optimized for **Zero-Config** deployment on **Coolify**:
 
-1. With Coolify for the New Resource, select **Applications**.
-2. Select the **Git Based** type based on your repository (Public or Private).
-3. Select **Docker Compose** as the **Build Pack**.
-4. Set the **Docker Compose Location** to `/docker-compose.yaml`.
-5. Set the **Destination Port** for the `web` service to `8081`.
-6. Deploy!
+1. Create a new **Application** in Coolify.
+2. Select **Docker Compose** as the build pack.
+3. In the **Domains** field, simply enter your domain (e.g., `https://your-domain.com`). 
+4. Since the app now defaults to port **80**, no additional port configuration is required!
+
+### Deploying Multiple Instances
+
+You can deploy the same repository multiple times with different UIs using **Environment Variables**:
+
+| Variable | Description | Default |
+| :--- | :--- | :--- |
+| `SITE_NAME` | The title and label shown on the page | `Timezone Web App` |
+| `PRIMARY_COLOR` | The hex color for the clock and accents | `#1a73e8` |
+
+**Example for a Green Theme:**
+1. In Coolify, go to the application's **Environment Variables**.
+2. Add `SITE_NAME=Green Clock` and `PRIMARY_COLOR=#4caf50`.
+3. Deploy!
 
 ## License
 

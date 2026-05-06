@@ -8,6 +8,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY main.py .
 COPY static ./static
 
-EXPOSE 8081
+ENV PORT=80
+EXPOSE 80
 
 CMD ["python", "main.py"]

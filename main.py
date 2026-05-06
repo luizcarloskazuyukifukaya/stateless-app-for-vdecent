@@ -1,16 +1,30 @@
-from fastapi import FastAPI
-from fastapi.responses import FileResponse
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 import uvicorn
 import os
 
 app = FastAPI()
 
-# Path to the static directory
-STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
+# Setup templates
+templates = Jinja2Templates(directory="static")
 
-@app.get("/")
-async def get_index():
-    return FileResponse(os.path.join(STATIC_DIR, "index.html"))
+@app.get("/", response_class=HTMLResponse)
+async def get_index(request: Request):
+    # Get customization from environment variables
+    site_name = os.environ.get("SITE_NAME", "Timezone Web App")
+    primary_color = os.environ.get("PRIMARY_COLOR", "#1a73e8")
+    
+    return templates.TemplateResponse(
+        "index.html", 
+        {
+            "request": request, 
+            "site_name": site_name, 
+            "primary_color": primary_color
+        }
+    )
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8081)
+    # Get port from environment variable for deployment flexibility
+    port = int(os.environ.get("PORT", 80))
+    uvicorn.run(app, host="0.0.0.0", port=port)
