@@ -16,10 +16,10 @@ async def get_index(request: Request):
     primary_color = os.environ.get("PRIMARY_COLOR", "#1a73e8")
     
     return templates.TemplateResponse(
-        "index.html", 
-        {
-            "request": request, 
-            "site_name": site_name, 
+        request=request,
+        name="index.html",
+        context={
+            "site_name": site_name,
             "primary_color": primary_color
         }
     )
