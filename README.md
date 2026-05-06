@@ -31,16 +31,22 @@ A simple, lightweight stateless web application built with FastAPI. This project
 
 ### Running Locally
 
-1. **Install Dependencies:**
+1. **Setup Environment:**
+   Copy the example environment file and customize it:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Install Dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Run the Application:**
+3. **Run the Application:**
    ```bash
    python main.py
    ```
-   The app will be available at `http://localhost:80` (requires root) or you can specify a port: `PORT=8081 python main.py`.
+   The app will use the settings defined in your `.env` file.
 
 ### Running with Docker
 
