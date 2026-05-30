@@ -64,8 +64,9 @@ This application is optimized for **Zero-Config** deployment on **Coolify**:
 
 1. Create a new **Application** in Coolify.
 2. Select **Docker Compose** as the build pack.
-3. In the **Domains** field, simply enter your domain (e.g., `https://your-domain.com`). 
-4. Since the app now defaults to port **80**, no additional port configuration is required!
+3. Coolify will automatically detect the `SITE_NAME` and `PRIMARY_COLOR` environment variables from the `docker-compose.yaml` file.
+4. In the **Domains** field, enter your domain (e.g., `https://your-domain.com`).
+5. Deploy!
 
 ### Deploying Multiple Instances
 
