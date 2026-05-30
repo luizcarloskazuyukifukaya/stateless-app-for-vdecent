@@ -1,4 +1,11 @@
 services:
   web:
     build: .
+    container_name: stateless-app
     restart: always
+    ports:
+      - "${PORT:-80}:80"
+    environment:
+      - PORT=80
+      - SITE_NAME=${SITE_NAME:-Timezone Web App}
+      - PRIMARY_COLOR=${PRIMARY_COLOR:-#1a73e8}
