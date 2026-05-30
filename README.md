@@ -29,32 +29,21 @@ A simple, lightweight stateless web application built with FastAPI. This project
 - Python 3.9+
 - Docker (optional, for containerized execution)
 
-### Running Locally
+### Running Locally (Bare-metal Python)
 
-1. **Setup Environment:**
-   Copy the example environment file and customize it:
-   ```bash
-   cp .env.example .env
-   ```
+Run the application directly using Python. The script will automatically find an available port starting at 8081.
 
-2. **Install Dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+./run_local.sh
+```
 
-3. **Run the Application:**
-   ```bash
-   python main.py
-   ```
-   The app will use the settings defined in your `.env` file.
+### Running Locally (Docker Compose)
 
-### Running with Docker
+Run the application locally using Docker Compose. The script uses `docker-compose.dev.yaml` to map ports and automatically finds an available port starting at 8081.
 
-1. **Build and Run:**
-   ```bash
-   docker-compose up --build
-   ```
-   *Note: The container now defaults to port 80 for seamless Coolify integration.*
+```bash
+./run_docker_local.sh
+```
 
 ## Deployment
 
