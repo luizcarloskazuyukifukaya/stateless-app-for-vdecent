@@ -3,8 +3,8 @@ services:
     build: .
     container_name: stateless-app
     restart: always
-    ports:
-      - "${PORT:-80}:80"
+    expose:
+      - "80"
     environment:
       - PORT=80
       - SITE_NAME=${SITE_NAME:-Timezone Web App}
