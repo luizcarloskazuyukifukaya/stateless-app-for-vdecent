@@ -9,15 +9,30 @@ A simple, lightweight stateless web application built with FastAPI. This project
 - **Stateless Design:** No persistent state within the application, making it ideal for scalable cloud deployments.
 - **Dockerized:** Includes a `Dockerfile` and `docker-compose.yaml` for easy environment setup and deployment.
 
+## V-Decent Compatibility
+This application is designed for V-Decent deployment.
+
+Include:
+- Docker Compose file: `docker-compose.yaml`
+- No host port mappings
+- Public-facing service name: `web`
+- Internal exposed port: `80`
+- Health endpoint: `/health`
+- Environment variable configuration
+- Stateful/stateless classification: **Stateless (Pattern A)**
+
 ## Project Structure
 
 ```text
 .
+├── docker-compose.yaml     # V-Decent compatible manifest
 ├── Dockerfile              # Docker image configuration
-├── docker-compose.yaml     # Docker Compose for local orchestration
+├── .env.example            # Environment variable template
 ├── main.py                 # FastAPI application entry point
 ├── requirements.txt        # Python dependencies
-├── run_local.sh            # Helper script to run the app locally
+├── README.md               # This file
+├── docs/
+│   └── vdecent-handover.md # Handover notes for V-Decent Operator
 └── static/                 # Directory for static assets
     └── index.html          # Main landing page
 ```
@@ -45,32 +60,29 @@ Run the application locally using Docker Compose. The script uses `docker-compos
 ./run_docker_local.sh
 ```
 
-## Deployment
+### 3. Test Health
+```bash
+curl http://localhost:8081/health
+```
 
-### Coolify
+## Production Environment Variables
+- `PORT`: Internal port for the application (default: 80).
+- `SITE_NAME`: Custom title for the application.
+- `PRIMARY_COLOR`: Hex code for the primary UI color.
 
-This application is optimized for **Zero-Config** deployment on **Coolify**:
+## Deployment Source
+Repository URL: https://github.com/v-decent/stateless-app-for-vdecent
+Branch: docker-network-enhancement
+Repository visibility: Private (ensure Deploy Key is configured)
 
-1. Create a new **Application** in Coolify.
-2. Select **Docker Compose** as the build pack.
-3. Coolify will automatically detect the `SITE_NAME` and `PRIMARY_COLOR` environment variables from the `docker-compose.yaml` file.
-4. In the **Domains** field, enter your domain (e.g., `https://your-domain.com`).
-5. Deploy!
+## V-Decent Application Manager Registration Notes
+Public-facing service: `web`
+Production URL: https://stateless-app.v-decent.org
+Internal services that must not be exposed: None
 
-### Deploying Multiple Instances
-
-You can deploy the same repository multiple times with different UIs using **Environment Variables**:
-
-| Variable | Description | Default |
-| :--- | :--- | :--- |
-| `SITE_NAME` | The title and label shown on the page | `Timezone Web App` |
-| `PRIMARY_COLOR` | The hex color for the clock and accents | `#1a73e8` |
-
-**Example for a Green Theme:**
-1. In Coolify, go to the application's **Environment Variables**.
-2. Add `SITE_NAME=Green Clock` and `PRIMARY_COLOR=#4caf50`.
-3. Deploy!
+## Troubleshooting
+- **Health Check Failing:** Ensure the application starts within the timeout period. Check logs using `docker compose logs`.
+- **Environment Variables:** Verify that all required variables are set in the V-Decent Application Manager.
 
 ## License
-
 MIT

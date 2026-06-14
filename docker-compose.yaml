@@ -9,3 +9,8 @@ services:
       - PORT=80
       - SITE_NAME=${SITE_NAME:-Timezone Web App}
       - PRIMARY_COLOR=${PRIMARY_COLOR:-#1a73e8}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:80/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10

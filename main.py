@@ -13,6 +13,10 @@ app = FastAPI()
 # Setup templates
 templates = Jinja2Templates(directory="static")
 
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
+
 @app.get("/", response_class=HTMLResponse)
 async def get_index(request: Request):
     # Get customization from environment variables
